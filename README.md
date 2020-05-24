@@ -1,2 +1,5 @@
 # Uniform
-Simple game application development framework
+Simple game development framework.
+
+## Build
+Build system implemented using CMake toolkit.
