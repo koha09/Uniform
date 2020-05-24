@@ -1,7 +1,7 @@
-#include <Uniform/Uniform.hpp>
+#include <uniform/uniform.hpp>
 
-#include <cstdio>
+#include <logger/logger.hpp>
 
 void uniform_test_function() {
-    printf("Hi! My dear Uniform Engine...\n");
+    UF_INFORMATION() << '<' << UF_GET_TIME() << "> Oh, shit... It's working!";
 }
