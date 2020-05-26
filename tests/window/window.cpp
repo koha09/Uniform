@@ -1,6 +1,15 @@
 #include <uniform/uniform.hpp>
 
-int main() {
-    uniform_test_function();
-    return 0;
+class Sandbox : public Uniform::IApplication 
+{
+public:
+
+    bool OnUpdate(const float elapsed_time) override {
+        return true;
+    }
+
+};
+
+Uniform::IApplication *Uniform::CreateApplication() {
+    return new Sandbox();
 }

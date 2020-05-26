@@ -58,6 +58,10 @@ set(UNIFORM_TERMCOLOR_DIR "${UNIFORM_VENDOR_DIR}/termcolor")
 add_subdirectory("${UNIFORM_TERMCOLOR_DIR}/")
 target_link_libraries(${PROJECT_NAME} termcolor)
 
+# Threads connection
+find_package(Threads)
+target_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT})
+
 # Options
 option(UNIFORM_BUILD_TESTS "Build the Uniform test programs" TRUE)
 

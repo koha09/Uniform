@@ -1,3 +1,7 @@
 #pragma once
 
-void uniform_test_function();
+#include <uniform/platform/platform.hpp>
+
+#if defined(UNIFORM_PLATFORM_WINDOWS)
+# include <uniform/platform/windows/windows.hpp>
+#endif
