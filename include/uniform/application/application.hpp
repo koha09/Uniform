@@ -3,13 +3,13 @@
 #include <uniform/platform/platform.hpp>
 #include <uniform/application/window/window.hpp>
 
-namespace Uniform 
+namespace Uniform
 {
     class UNIFORM_API IApplication : public Window
     {
     public:
 
-        IApplication();
+        IApplication(std::string title, VideoMode mode);
         virtual ~IApplication();
 
         void Run();
