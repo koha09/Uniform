@@ -67,5 +67,6 @@ option(UNIFORM_BUILD_TESTS "Build the Uniform test programs" TRUE)
 
 # Tests building
 if (UNIFORM_BUILD_TESTS)
+ add_subdirectory("${UNIFORM_TESTS_DIR}/vector/")
  add_subdirectory("${UNIFORM_TESTS_DIR}/window/")
 endif ()
