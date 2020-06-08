@@ -7,9 +7,9 @@
 
 Logger::Logger() { }
 
-Logger::~Logger() { 
+Logger::~Logger() {
 	std::cerr << termcolor::reset;
-	std::cout << termcolor::reset; 
+	std::cout << termcolor::reset;
 }
 
 std::ofstream *Logger::get_stream(const std::string &name) {
@@ -36,13 +36,13 @@ bool Logger::make_stream(const std::string &name, const std::string &file) {
 }
 
 bool Logger::delete_stream(const std::string &name) {
-	auto iterator = std::find_if(_file_streams.begin(), _file_streams.end(), 
+	auto iterator = std::find_if(_file_streams.begin(), _file_streams.end(),
 		[&name](const std::pair<std::string, std::ofstream> &element) -> bool {
 			return element.first == name;
 		}
 	);
 
-	if ((*iterator).first.empty()) 
+	if ((*iterator).first.empty())
 		return false;
 
 	_file_streams.erase(iterator);
@@ -73,13 +73,13 @@ bool Logger::make_timer(const std::string &name) {
 }
 
 bool Logger::delete_timer(const std::string &name) {
-	auto iterator = std::find_if(_timers.begin(), _timers.end(), 
+	auto iterator = std::find_if(_timers.begin(), _timers.end(),
 		[&name](const std::pair<std::string, system_clock::time_point> &element) -> bool {
 			return element.first == name;
 		}
 	);
 
-	if ((*iterator).first.empty()) 
+	if ((*iterator).first.empty())
 		return false;
 
 	_timers.erase(iterator);

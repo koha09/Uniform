@@ -1,13 +1,13 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.12)
 
 project(Uniform VERSION 1.0.0)
 set(CMAKE_CXX_STANDARD 17)
 
 # Working directories
-set(UNIFORM_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/include")
-set(UNIFORM_SRC_DIR "${CMAKE_SOURCE_DIR}/src")
-set(UNIFORM_TESTS_DIR "${CMAKE_SOURCE_DIR}/tests")
-set(UNIFORM_VENDOR_DIR "${CMAKE_SOURCE_DIR}/vendor")
+set(UNIFORM_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
+set(UNIFORM_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+set(UNIFORM_TESTS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tests")
+set(UNIFORM_VENDOR_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vendor")
 
 # Connection of special directories
 include_directories("${UNIFORM_INCLUDE_DIR}/")
@@ -67,6 +67,7 @@ option(UNIFORM_BUILD_TESTS "Build the Uniform test programs" TRUE)
 
 # Tests building
 if (UNIFORM_BUILD_TESTS)
+ add_subdirectory("${UNIFORM_TESTS_DIR}/events/")
  add_subdirectory("${UNIFORM_TESTS_DIR}/vector/")
  add_subdirectory("${UNIFORM_TESTS_DIR}/window/")
 endif ()

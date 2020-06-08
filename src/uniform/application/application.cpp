@@ -11,11 +11,11 @@ Uniform::IApplication::IApplication(
 
 Uniform::IApplication::~IApplication() { }
 
-void Uniform::IApplication::Run() {
+void Uniform::IApplication::run() {
     float elapsed_time = 1.f;
     system_clock::time_point first_time;
     for (bool atom_active = true; atom_active; first_time = system_clock::now()) {
         atom_active = OnUpdate(elapsed_time);
-        elapsed_time = (system_clock::now() - first_time).count();
+        elapsed_time = float((system_clock::now() - first_time).count());
     }
 }

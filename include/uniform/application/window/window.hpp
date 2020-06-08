@@ -1,12 +1,13 @@
 #pragma once
 
 #include <uniform/platform/platform.hpp>
+#include <uniform/application/window/event/event.hpp>
 
 #include <string>
 
 namespace Uniform
 {
-    class VideoMode
+    class UNIFORM_API VideoMode
     {
     public:
 
@@ -16,7 +17,7 @@ namespace Uniform
 
     };
 
-    class UNIFORM_API Window
+    class UNIFORM_API Window : public EventDispatcher
     {
     private:
 

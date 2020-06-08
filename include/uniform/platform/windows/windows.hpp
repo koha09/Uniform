@@ -18,7 +18,7 @@
 #endif
 {
     Uniform::IApplication *application = Uniform::CreateApplication();
-    application->Run();
+    application->run();
     delete application;
     return 0;
 }

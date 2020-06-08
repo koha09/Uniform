@@ -28,6 +28,27 @@ Uniform::Window::Window(
     _window->instance = glfwCreateWindow(mode.width, mode.height, title.c_str(), nullptr, nullptr);
     glfwMakeContextCurrent(_window->instance);
     set_vsync(false);
+
+    glfwSetWindowUserPointer(_window->instance, (void*)this);
+    glfwSetKeyCallback(_window->instance, [](GLFWwindow *window, int key, int scan_code, int action, int mods) -> void {
+        reinterpret_cast<Window*>(glfwGetWindowUserPointer(window))->OnKeyboardPress((Keyboard::Code)key, (Keyboard::Action)action);
+    });
+
+	glfwSetCursorPosCallback(_window->instance, [](GLFWwindow *window, double position_x, double position_y) -> void {
+        reinterpret_cast<Window*>(glfwGetWindowUserPointer(window))->OnMouseMove(Vector2i((int)position_x, (int)position_y));
+	});
+
+	glfwSetMouseButtonCallback(_window->instance, [](GLFWwindow *window, int button, int action, int mods) -> void {
+        reinterpret_cast<Window*>(glfwGetWindowUserPointer(window))->OnMousePress((Mouse::Code)button, (Mouse::Action)action);
+	});
+
+	glfwSetWindowPosCallback(_window->instance, [](GLFWwindow *window, int position_x, int position_y) -> void {
+        reinterpret_cast<Window*>(glfwGetWindowUserPointer(window))->OnWindowMove(Vector2i(position_x, position_y));
+	});
+
+	glfwSetWindowSizeCallback(_window->instance, [](GLFWwindow *window, int width, int height) -> void {
+        reinterpret_cast<Window*>(glfwGetWindowUserPointer(window))->OnWindowResize(Vector2i(width, height));
+	});
 }
 
 Uniform::Window::~Window() {

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 namespace Uniform
 {
     template <class _type>
@@ -17,6 +19,7 @@ namespace Uniform
     typedef Vector2<unsigned> Vector2u;
     typedef Vector2<int>      Vector2i;
     typedef Vector2<float>    Vector2f;
+    typedef Vector2<double>   Vector2d;
 
     template <class _type>
     Vector2<_type> operator+(Vector2<_type> &left, Vector2<_type> &right) {
@@ -96,5 +99,10 @@ namespace Uniform
     template <class _type>
     void operator/=(Vector2<_type> &left, const _type right) {
         left = left / right;
+    }
+
+    template <class _type>
+    std::ostream &operator<<(std::ostream &stream, Vector2<_type> &right) {
+        return stream << "{ " << right.x << ", " << right.y << " }";
     }
 }

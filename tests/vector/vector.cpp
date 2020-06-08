@@ -16,7 +16,9 @@ int main() {
         (v1 - v2).y == -20
     );
 
-    LOG_INFORMATION() << "[assert #1]: [" << v1.x << ", " << v1.y << "]\n";
+    #if defined(_DEBUG_)
+     LOG_INFORMATION() << "[assert #1]: " << v1 << '\n';
+    #endif
 
     v1 += v2, v1 += 10;
     assert(
@@ -24,7 +26,9 @@ int main() {
         (v1 + v2).y == 20
     );
 
-    LOG_INFORMATION() << "[assert #2]: [" << v1.x << ", " << v1.y << "]\n";
+    #if defined(_DEBUG_)
+     LOG_INFORMATION() << "[assert #2]: " << v1 << '\n';
+    #endif
 
     v1 /= v2, v1 /= 1;
     assert(
@@ -32,7 +36,9 @@ int main() {
         (v2 / v1).y == 10
     );
 
-    LOG_INFORMATION() << "[assert #3]: [" << v1.x << ", " << v1.y << "]\n";
+    #if defined(_DEBUG_)
+     LOG_INFORMATION() << "[assert #3]: " << v1 << '\n';
+    #endif
 
     v1 *= v2, v1 *= 1;
     assert(
@@ -40,7 +46,9 @@ int main() {
         (v1 * v2).y == 100
     );
 
-    LOG_INFORMATION() << "[assert #4]: [" << v1.x << ", " << v1.y << "]\n";
+    #if defined(_DEBUG_)
+     LOG_INFORMATION() << "[assert #4]: " << v1 << '\n';
+    #endif
 
     return 0;
 }

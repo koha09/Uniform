@@ -12,7 +12,7 @@ namespace Uniform
         IApplication(std::string title, VideoMode mode, size_t style = 0);
         virtual ~IApplication();
 
-        void Run();
+        void run();
 
         virtual bool OnUpdate(const float elapsed_time) = 0;
 
