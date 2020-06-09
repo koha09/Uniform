@@ -10,7 +10,7 @@ namespace Uniform
     public:
 
         IApplication(std::string title, VideoMode mode, size_t style = 0);
-        virtual ~IApplication();
+        virtual ~IApplication() = default;
 
         void run();
 

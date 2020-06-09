@@ -5,9 +5,8 @@
 namespace Uniform
 {
     template <class _type>
-    class Vector2
+    struct Vector2
     {
-    public:
 
         _type x, y;
 

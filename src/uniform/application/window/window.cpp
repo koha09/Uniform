@@ -15,7 +15,7 @@ struct Uniform::Window::Handle {
 Uniform::Window::Window(
     std::string title,
     VideoMode mode,
-    size_t style
+    unsigned style
 ) : _title(title), _mode(mode), _window(new Handle) {
     if (!glfwInit()) {
         exit(EXIT_FAILURE);
@@ -34,20 +34,20 @@ Uniform::Window::Window(
         reinterpret_cast<Window*>(glfwGetWindowUserPointer(window))->OnKeyboardPress((Keyboard::Code)key, (Keyboard::Action)action);
     });
 
+    glfwSetMouseButtonCallback(_window->instance, [](GLFWwindow *window, int button, int action, int mods) -> void {
+        reinterpret_cast<Window*>(glfwGetWindowUserPointer(window))->OnMousePress((Mouse::Code)button, (Mouse::Action)action);
+	});
+
 	glfwSetCursorPosCallback(_window->instance, [](GLFWwindow *window, double position_x, double position_y) -> void {
         reinterpret_cast<Window*>(glfwGetWindowUserPointer(window))->OnMouseMove(Vector2i((int)position_x, (int)position_y));
 	});
 
-	glfwSetMouseButtonCallback(_window->instance, [](GLFWwindow *window, int button, int action, int mods) -> void {
-        reinterpret_cast<Window*>(glfwGetWindowUserPointer(window))->OnMousePress((Mouse::Code)button, (Mouse::Action)action);
-	});
-
 	glfwSetWindowPosCallback(_window->instance, [](GLFWwindow *window, int position_x, int position_y) -> void {
-        reinterpret_cast<Window*>(glfwGetWindowUserPointer(window))->OnWindowMove(Vector2i(position_x, position_y));
+        reinterpret_cast<Window*>(glfwGetWindowUserPointer(window))->OnWindowMove(Point2i(position_x, position_y));
 	});
 
 	glfwSetWindowSizeCallback(_window->instance, [](GLFWwindow *window, int width, int height) -> void {
-        reinterpret_cast<Window*>(glfwGetWindowUserPointer(window))->OnWindowResize(Vector2i(width, height));
+        reinterpret_cast<Window*>(glfwGetWindowUserPointer(window))->OnWindowResize(Size2i(width, height));
 	});
 }
 
@@ -62,17 +62,17 @@ bool Uniform::Window::is_open() {
 	return !glfwWindowShouldClose(_window->instance);
 }
 
-int Uniform::Window::get_width() const {
+int Uniform::Window::get_width() {
     glfwGetWindowSize(_window->instance, (int*)&_mode.width, nullptr);
     return _mode.width;
 }
 
-int Uniform::Window::get_height() const{
+int Uniform::Window::get_height() {
     glfwGetWindowSize(_window->instance, nullptr, (int*)&_mode.height);
     return _mode.height;
 }
 
-bool Uniform::Window::is_vsync() const{
+bool Uniform::Window::is_vsync() {
     return _vsync;
 }
 

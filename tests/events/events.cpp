@@ -11,13 +11,13 @@ public:
         Window::Style::Resizable
     ) { }
 
-    void OnWindowMove(Vector2i position) {
+    void OnWindowMove(Vector2i position) override {
         #if defined(_DEBUG_)
          LOG_INFORMATION() << "OnWindowMove: " << position << '\n';
         #endif
     }
 
-    void OnWindowResize(Vector2i size) {
+    void OnWindowResize(Vector2i size) override {
         #if defined(_DEBUG_)
          LOG_INFORMATION() << "OnWindowResize: " << size << '\n';
         #endif

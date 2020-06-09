@@ -9,8 +9,6 @@ Uniform::IApplication::IApplication(
     size_t style
 ) : Window(title, mode, style) { }
 
-Uniform::IApplication::~IApplication() { }
-
 void Uniform::IApplication::run() {
     float elapsed_time = 1.f;
     system_clock::time_point first_time;

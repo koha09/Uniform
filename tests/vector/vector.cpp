@@ -11,7 +11,7 @@ int main() {
     Vector2i v1(10, 10), v2(10, 10);
 
     v1 -= v2, v1 -= 10;
-    assert(
+    assert (
         (v1 - v2).x == -20 &&
         (v1 - v2).y == -20
     );
@@ -21,7 +21,7 @@ int main() {
     #endif
 
     v1 += v2, v1 += 10;
-    assert(
+    assert (
         (v1 + v2).x == 20 &&
         (v1 + v2).y == 20
     );
@@ -31,7 +31,7 @@ int main() {
     #endif
 
     v1 /= v2, v1 /= 1;
-    assert(
+    assert (
         (v2 / v1).x == 10 &&
         (v2 / v1).y == 10
     );
@@ -41,7 +41,7 @@ int main() {
     #endif
 
     v1 *= v2, v1 *= 1;
-    assert(
+    assert (
         (v1 * v2).x == 100 &&
         (v1 * v2).y == 100
     );

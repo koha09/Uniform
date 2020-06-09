@@ -5,9 +5,8 @@
 namespace Uniform
 {
     template <class _type>
-    class Vector3
+    struct Vector3
     {
-    public:
 
         _type x, y, z;
 
@@ -20,7 +19,6 @@ namespace Uniform
     typedef Vector3<int>      Vector3i;
     typedef Vector3<float>    Vector3f;
     typedef Vector3<double>   Vector3d;
-
 
     template <class _type>
     Vector3<_type> operator+(Vector3<_type> &left, Vector3<_type> &right) {
