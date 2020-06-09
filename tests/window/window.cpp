@@ -1,4 +1,4 @@
-#include <uniform/uniform.hpp>
+#include <uniform.hpp>
 
 using namespace Uniform;
 

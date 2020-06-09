@@ -57,13 +57,20 @@ namespace Uniform
 
     public:
 
-        virtual void OnKeyboardPress(Keyboard::Code, Keyboard::Action action) { }
+        virtual void OnKeyboardPress(
+            const Keyboard::Code,
+            const Keyboard::Action
+        ) { }
 
-        virtual void OnMousePress(Mouse::Code, Mouse::Action) { }
-        virtual void OnMouseMove(Point2i) { }
+        virtual void OnMousePress(
+            const Mouse::Code,
+            const Mouse::Action
+        ) { }
 
-        virtual void OnWindowMove(Point2i) { }
-        virtual void OnWindowResize(Size2i) { }
+        virtual void OnMouseMove(const Point2i) { }
+
+        virtual void OnWindowMove(const Point2i) { }
+        virtual void OnWindowResize(const Size2i) { }
 
     };
 }

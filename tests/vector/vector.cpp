@@ -1,4 +1,4 @@
-#include <logger/logger.hpp>
+#include <logger.hpp>
 
 #include <uniform/core/math/vector2.hpp>
 #include <uniform/core/math/vector3.hpp>

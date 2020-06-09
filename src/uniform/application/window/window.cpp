@@ -1,6 +1,5 @@
 #include <uniform/application/window/window.hpp>
 
-#include <logger/logger.hpp>
 #include <GLFW/glfw3.h>
 
 Uniform::VideoMode::VideoMode(

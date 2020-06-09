@@ -8,14 +8,14 @@
 #include <chrono>
 using namespace std::chrono;
 
-class Logger 
+class Logger
 {
 private:
 
     Logger();
 	~Logger();
 
-    Logger(const Logger&);  
+    Logger(const Logger&);
     Logger &operator=(Logger&);
 
 public:
@@ -26,7 +26,7 @@ public:
 	bool delete_stream(const std::string &name);
 
 	microseconds get_timer(const std::string &name);
-	
+
 	bool make_timer(const std::string &name);
 	bool delete_timer(const std::string &name);
 
@@ -36,7 +36,7 @@ public:
     std::ostream &error();
 	std::ostream &warning();
 	std::ostream &information();
-	
+
     static Logger &GetInstance() {
         static Logger r_instance;
         return r_instance;

@@ -1,5 +1,5 @@
-#include <uniform/uniform.hpp>
-#include <logger/logger.hpp>
+#include <uniform.hpp>
+#include <logger.hpp>
 
 using namespace Uniform;
 
@@ -11,13 +11,13 @@ public:
         Window::Style::Resizable
     ) { }
 
-    void OnWindowMove(Vector2i position) override {
+    void OnWindowMove(Point2i position) override {
         #if defined(_DEBUG_)
          LOG_INFORMATION() << "OnWindowMove: " << position << '\n';
         #endif
     }
 
-    void OnWindowResize(Vector2i size) override {
+    void OnWindowResize(Size2i size) override {
         #if defined(_DEBUG_)
          LOG_INFORMATION() << "OnWindowResize: " << size << '\n';
         #endif
