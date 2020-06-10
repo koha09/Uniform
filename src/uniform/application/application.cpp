@@ -16,7 +16,7 @@ void Uniform::IApplication::push_layer(ILayer *layer) {
 }
 
 void Uniform::IApplication::run() {
-    int64_t elapsed_time = 1.f;
+    int64_t elapsed_time = 1;
     system_clock::time_point first_time;
     while (_running) {
         first_time = system_clock::now();

@@ -71,5 +71,52 @@ Uniform::IApplication *Uniform::CreateApplication() {
 }
 ```
 
+### Functionality
+Functionality component interaction interface
+```cpp
+#include <uniform.hpp>
+
+using namespace Uniform;
+
+class Layer1 : public ILayer {
+public:
+
+    virtual bool OnUpdate(const int64_t elapsed_time) override {
+        return true;
+    }
+
+};
+
+class Layer2 : public ILayer {
+public:
+
+    virtual bool OnUpdate(const int64_t elapsed_time) override {
+        return true;
+    }
+
+};
+
+class Sandbox : public IApplication
+{
+public:
+
+    Sandbox() : IApplication("Uni-form", VideoMode(1200, 800),
+        Window::Style::Resizable
+    ) {
+        push_layer(new Layer1);
+        push_layer(new Layer2);
+    }
+
+    bool OnUpdate(const int64_t elapsed_time) override {
+        return is_open();
+    }
+
+};
+
+Uniform::IApplication *Uniform::CreateApplication() {
+    return new Sandbox();
+}
+```
+
 ## Build
 Build system implemented using CMake toolkit.
