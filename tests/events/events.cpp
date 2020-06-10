@@ -23,7 +23,7 @@ public:
         #endif
     }
 
-    bool OnUpdate(const float elapsed_time) override {
+    bool OnUpdate(const int64_t elapsed_time) override {
         return is_open();
     }
 

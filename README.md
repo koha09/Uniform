@@ -45,13 +45,20 @@ public:
         Window::Style::Resizable
     ) { }
 
-    void OnKeyboardPress(Keyboard::Code code, Keyboard::Action action) { }
+    void OnKeyboardPress(
+        const Keyboard::Code code,
+        const Keyboard::Action action
+    ) { }
 
-    void OnMousePress(Mouse::Code code, Mouse::Action action) { }
-    void OnMouseMove(Point2i position) { }
+    void OnMousePress(
+        const Mouse::Code code,
+        const Mouse::Action action
+    ) { }
 
-    void OnWindowMove(Point2i position) { }
-    void OnWindowResize(Size2i size) { }
+    void OnMouseMove(const Point2i position) { }
+
+    void OnWindowMove(const Point2i position) { }
+    void OnWindowResize(const Size2i size) { }
 
     bool OnUpdate(const float elapsed_time) override {
         return is_open();
