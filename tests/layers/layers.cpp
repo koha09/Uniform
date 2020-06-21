@@ -6,7 +6,7 @@ using namespace Uniform;
 class Layer1 : public ILayer {
 public:
 
-    virtual bool OnUpdate(const int64_t elapsed_time) override {
+    bool OnUpdate(const int64_t elapsed_time) override {
         #if defined(_DEBUG_)
          LOG_INFORMATION() << "Message by Layer1!\n";
         #endif
@@ -18,7 +18,7 @@ public:
 class Layer2 : public ILayer {
 public:
 
-    virtual bool OnUpdate(const int64_t elapsed_time) override {
+    bool OnUpdate(const int64_t elapsed_time) override {
         #if defined(_DEBUG_)
          LOG_INFORMATION() << "Message by Layer2!\n";
         #endif
@@ -39,7 +39,7 @@ public:
     }
 
     bool OnUpdate(const int64_t elapsed_time) override {
-        return is_open();
+        return poll_events();
     }
 
 };

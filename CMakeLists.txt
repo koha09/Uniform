@@ -48,15 +48,41 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE "GLFW_INCLUDE_NONE")
 
 # GLAD connection
 set(UNIFORM_GLAD_DIR "${UNIFORM_VENDOR_DIR}/glad")
-add_library("glad" "${UNIFORM_GLAD_DIR}/src/glad.c")
-target_include_directories("glad" PRIVATE "${UNIFORM_GLAD_DIR}/include")
-target_include_directories(${PROJECT_NAME} PRIVATE "${UNIFORM_GLAD_DIR}/include")
-target_link_libraries(${PROJECT_NAME} "glad" ${CMAKE_DL_LIBS})
+add_library(glad STATIC
+    "${UNIFORM_GLAD_DIR}/src/glad.c"
+    "${UNIFORM_GLAD_DIR}/include/glad/glad.h"
+)
+target_include_directories(glad PUBLIC "${UNIFORM_GLAD_DIR}/include")
+target_link_libraries(${PROJECT_NAME} glad ${CMAKE_DL_LIBS})
 
 # Termcolor connection
 set(UNIFORM_TERMCOLOR_DIR "${UNIFORM_VENDOR_DIR}/termcolor")
 add_subdirectory("${UNIFORM_TERMCOLOR_DIR}/")
 target_link_libraries(${PROJECT_NAME} termcolor)
+
+# Imgui connection
+set(UNIFORM_IMGUI_DIR "${UNIFORM_VENDOR_DIR}/imgui")
+target_include_directories(${PROJECT_NAME} PRIVATE "${UNIFORM_IMGUI_DIR}/")
+add_library(imgui STATIC
+    "${UNIFORM_IMGUI_DIR}/imgui.h"
+    "${UNIFORM_IMGUI_DIR}/imgui.cpp"
+    "${UNIFORM_IMGUI_DIR}/imgui_demo.cpp"
+    "${UNIFORM_IMGUI_DIR}/imgui_draw.cpp"
+    "${UNIFORM_IMGUI_DIR}/imgui_internal.h"
+    "${UNIFORM_IMGUI_DIR}/imgui_widgets.cpp"
+    "${UNIFORM_IMGUI_DIR}/imstb_rectpack.h"
+    "${UNIFORM_IMGUI_DIR}/imstb_textedit.h"
+    "${UNIFORM_IMGUI_DIR}/imstb_truetype.h"
+    "${UNIFORM_IMGUI_DIR}/examples/imgui_impl_glfw.h"
+    "${UNIFORM_IMGUI_DIR}/examples/imgui_impl_glfw.cpp"
+    "${UNIFORM_IMGUI_DIR}/examples/imgui_impl_opengl3.h"
+    "${UNIFORM_IMGUI_DIR}/examples/imgui_impl_opengl3.cpp"
+)
+target_include_directories(imgui PUBLIC "${UNIFORM_IMGUI_DIR}/")
+target_link_libraries(imgui PRIVATE glfw ${GLFW_LIBRARIES})
+target_link_libraries(imgui PRIVATE glad ${CMAKE_DL_LIBS})
+target_compile_definitions(imgui PRIVATE "IMGUI_IMPL_OPENGL_LOADER_GLAD")
+target_link_libraries(${PROJECT_NAME} imgui)
 
 # Threads connection
 find_package(Threads)
@@ -68,6 +94,7 @@ option(UNIFORM_BUILD_TESTS "Build the Uniform test programs" TRUE)
 # Tests building
 if (UNIFORM_BUILD_TESTS)
  add_subdirectory("${UNIFORM_TESTS_DIR}/events/")
+ add_subdirectory("${UNIFORM_TESTS_DIR}/modules/")
  add_subdirectory("${UNIFORM_TESTS_DIR}/layers/")
  add_subdirectory("${UNIFORM_TESTS_DIR}/vector/")
  add_subdirectory("${UNIFORM_TESTS_DIR}/window/")

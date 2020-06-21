@@ -11,7 +11,7 @@ public:
     ) { }
 
     bool OnUpdate(const int64_t elapsed_time) override {
-        return is_open();
+        return poll_events();
     }
 
 };

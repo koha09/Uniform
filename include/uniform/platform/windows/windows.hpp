@@ -17,8 +17,8 @@
  int main()
 #endif
 {
-    Uniform::IApplication *application = Uniform::CreateApplication();
-    application->run();
-    delete application;
-    return 0;
+  Uniform::IApplication *application = Uniform::CreateApplication();
+  application->run();
+  delete application;
+  return 0;
 }

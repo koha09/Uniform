@@ -12,6 +12,7 @@ addons:
       - libxinerama-dev
       - libxcursor-dev
       - libxi-dev
+      - mesa-common-dev
 
 script:
   - cmake .

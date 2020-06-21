@@ -1,5 +1,6 @@
 #include <uniform/application/window/window.hpp>
 
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 Uniform::VideoMode::VideoMode(
@@ -27,6 +28,10 @@ Uniform::Window::Window(
     _window->instance = glfwCreateWindow(mode.width, mode.height, title.c_str(), nullptr, nullptr);
     glfwMakeContextCurrent(_window->instance);
     set_vsync(false);
+
+    if (!gladLoadGL()) {
+        exit(EXIT_FAILURE);
+    }
 
     glfwSetWindowUserPointer(_window->instance, (void*)this);
     glfwSetKeyCallback(_window->instance, [](GLFWwindow *window, int key, int scan_code, int action, int mods) -> void {
@@ -56,19 +61,23 @@ Uniform::Window::~Window() {
     delete _window;
 }
 
-bool Uniform::Window::is_open() {
-    glfwPollEvents();
-	return !glfwWindowShouldClose(_window->instance);
+Uniform::Size2i Uniform::Window::get_size() {
+    glfwGetWindowSize(_window->instance, (int*)&_mode.width, (int*)&_mode.height);
+    return Size2i(_mode.width, _mode.height);
 }
 
-int Uniform::Window::get_width() {
-    glfwGetWindowSize(_window->instance, (int*)&_mode.width, nullptr);
-    return _mode.width;
+void Uniform::Window::set_size(Size2i size) {
+    glfwSetWindowSize(_window->instance, size.x, size.y);
 }
 
-int Uniform::Window::get_height() {
-    glfwGetWindowSize(_window->instance, nullptr, (int*)&_mode.height);
-    return _mode.height;
+Uniform::Point2i Uniform::Window::get_position() {
+    Point2i point;
+    glfwGetWindowPos(_window->instance, (int*)&point.x, (int*)&point.y);
+    return point;
+}
+
+void Uniform::Window::set_position(Point2i point) {
+    glfwSetWindowPos(_window->instance, point.x, point.y);
 }
 
 bool Uniform::Window::is_vsync() {
@@ -77,4 +86,13 @@ bool Uniform::Window::is_vsync() {
 
 void Uniform::Window::set_vsync(bool enabled) {
     glfwSwapInterval(_vsync = enabled);
+}
+
+void *Uniform::Window::get_handle() {
+    return (void*)_window->instance;
+}
+
+bool Uniform::Window::poll_events() {
+    glfwPollEvents();
+	return !glfwWindowShouldClose(_window->instance);
 }

@@ -11,8 +11,15 @@ Uniform::IApplication::IApplication(
     _running = true;
 }
 
+void Uniform::ILayer::OnAttach(IApplication *application) { }
+void Uniform::ILayer::OnDetach() { }
+
+void Uniform::ILayer::OnStartFrame(int64_t) { }
+void Uniform::ILayer::OnEndFrame(int64_t) { }
+
 void Uniform::IApplication::push_layer(ILayer *layer) {
     _layers.push_back(layer);
+    layer->OnAttach(this);
 }
 
 void Uniform::IApplication::run() {
@@ -22,9 +29,13 @@ void Uniform::IApplication::run() {
         first_time = system_clock::now();
 
         for (auto it = _layers.begin(); it != _layers.end(); ++it) {
+            (*it)->OnStartFrame(elapsed_time);
             if (!(*it)->OnUpdate(elapsed_time)) {
+                (*it)->OnEndFrame(elapsed_time), (*it)->OnDetach();
                 _layers.erase(it);
+                continue;
             }
+            (*it)->OnEndFrame(elapsed_time);
         }
 
         if (!OnUpdate(elapsed_time)) {

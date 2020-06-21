@@ -30,7 +30,8 @@ namespace Uniform
 
     public:
 
-        enum Style : unsigned {
+        enum Style : unsigned
+        {
             Resizable = 1 << 0,
             Maximized = 1 << 1,
             Floating = 1 << 2
@@ -39,23 +40,28 @@ namespace Uniform
         Window(std::string title, VideoMode mode, unsigned style);
         virtual ~Window();
 
-        bool is_open();
+        Size2i get_size();
+        void set_size(Size2i size);
 
-        int get_width();
-        int get_height();
+        Point2i get_position();
+        void set_position(Point2i point);
 
         bool is_vsync();
         void set_vsync(bool enabled);
 
-    private:
+        void *get_handle();
 
-        Handle *_window;
+    private:
 
         std::string _title;
         VideoMode _mode;
         bool _vsync;
 
-    public:
+    protected:
+
+        Handle *_window;
+
+        bool poll_events();
 
         virtual void OnKeyboardPress(
             Keyboard::Code,

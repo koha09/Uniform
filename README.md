@@ -20,7 +20,7 @@ public:
     ) { }
 
     bool OnUpdate(const float elapsed_time) override {
-        return is_open();
+        return poll_events();
     }
 
 };
@@ -61,7 +61,7 @@ public:
     void OnWindowResize(const Size2i size) { }
 
     bool OnUpdate(const float elapsed_time) override {
-        return is_open();
+        return poll_events();
     }
 
 };
@@ -108,7 +108,7 @@ public:
     }
 
     bool OnUpdate(const int64_t elapsed_time) override {
-        return is_open();
+        return poll_events();
     }
 
 };
