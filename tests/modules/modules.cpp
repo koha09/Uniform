@@ -12,7 +12,7 @@ public:
     bool OnUpdate(const int64_t elapsed_time) override {
         ImGui::Begin("Message");
         ImGui::Text("I work ... I do not know, miracle is probably.");
-        ImGui::Text("Elapsed time: %uns", elapsed_time);
+        ImGui::Text("Elapsed time: %" PRId64 "ns", elapsed_time);
         return true;
     }
 
