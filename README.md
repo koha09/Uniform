@@ -19,7 +19,7 @@ public:
         Window::Style::Resizable
     ) { }
 
-    bool OnUpdate(const float elapsed_time) override {
+    bool OnUpdate(const int64_t elapsed_time) override {
         return poll_events();
     }
 
@@ -60,7 +60,7 @@ public:
     void OnWindowMove(const Point2i position) { }
     void OnWindowResize(const Size2i size) { }
 
-    bool OnUpdate(const float elapsed_time) override {
+    bool OnUpdate(const int64_t elapsed_time) override {
         return poll_events();
     }
 
