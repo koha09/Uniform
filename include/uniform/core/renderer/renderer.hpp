@@ -8,8 +8,9 @@ namespace Uniform
 {
     namespace Renderer
     {
-        void UNIFORM_API SwapBuffers(void *handle);
+
         void UNIFORM_API SetClearColor(float r, float g, float b);
         void UNIFORM_API Clear(unsigned mask);
+
     }
 }

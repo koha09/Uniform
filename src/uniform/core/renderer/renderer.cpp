@@ -3,10 +3,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-void Uniform::Renderer::SwapBuffers(void *handle) {
-    glfwSwapBuffers((GLFWwindow*)handle);
-}
-
 void Uniform::Renderer::SetClearColor(float r, float g, float b) {
     glClearColor(r, g, b, 1.f);
 }

@@ -9,9 +9,9 @@ class ImGuiLayer : public Modules::ImGuiLayer
 {
 public:
 
-    bool OnUpdate(const int64_t elapsed_time) override {
+    virtual bool OnUpdate(const int64_t elapsed_time) override {
         ImGui::Begin("Message");
-        ImGui::Text("I work ... I do not know, miracle is probably.");
+        ImGui::Text("I work... I do not know, miracle is probably.");
         ImGui::Text("Elapsed time: %" PRId64 "ns", elapsed_time);
         return true;
     }
@@ -28,11 +28,11 @@ public:
         push_layer(new ImGuiLayer);
     }
 
-    bool OnUpdate(const int64_t elapsed_time) override {
+    virtual bool OnUpdate(const int64_t elapsed_time) override {
         Uniform::Renderer::SetClearColor(0.20f, 0.25f, 0.30f);
         Uniform::Renderer::Clear(UF_COLOR_BUFFER_BIT);
         Uniform::Modules::ImGuiRenderDrawData();
-        Uniform::Renderer::SwapBuffers(get_handle());
+        swap_buffers();
         return poll_events();
     }
 

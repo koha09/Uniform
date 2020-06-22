@@ -4,8 +4,8 @@
 #include <GLFW/glfw3.h>
 
 Uniform::VideoMode::VideoMode(
-    int mode_width,
-    int mode_height
+    const int mode_width,
+    const int mode_height
 ) : width(mode_width), height(mode_height) { }
 
 struct Uniform::Window::Handle {
@@ -13,9 +13,9 @@ struct Uniform::Window::Handle {
 };
 
 Uniform::Window::Window(
-    std::string title,
-    VideoMode mode,
-    unsigned style
+    const std::string title,
+    const VideoMode mode,
+    const unsigned style
 ) : _title(title), _mode(mode), _window(new Handle) {
     if (!glfwInit()) {
         exit(EXIT_FAILURE);
@@ -90,6 +90,10 @@ void Uniform::Window::set_vsync(bool enabled) {
 
 void *Uniform::Window::get_handle() {
     return (void*)_window->instance;
+}
+
+void Uniform::Window::swap_buffers() {
+    glfwSwapBuffers(_window->instance);
 }
 
 bool Uniform::Window::poll_events() {

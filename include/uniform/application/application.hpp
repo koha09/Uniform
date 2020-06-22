@@ -23,10 +23,10 @@ namespace Uniform
         virtual void OnAttach(IApplication *application);
         virtual void OnDetach();
 
-        virtual void OnStartFrame(int64_t);
-        virtual void OnEndFrame(int64_t);
+        virtual void OnStartFrame(const int64_t);
+        virtual void OnEndFrame(const int64_t);
 
-        virtual bool OnUpdate(int64_t) = 0;
+        virtual bool OnUpdate(const int64_t) = 0;
 
     };
 
@@ -34,7 +34,7 @@ namespace Uniform
     {
     public:
 
-        IApplication(std::string title, VideoMode mode, size_t style = 0);
+        IApplication(const std::string title, const VideoMode mode, const size_t style = 0);
         virtual ~IApplication() = default;
 
         void run();
@@ -43,7 +43,7 @@ namespace Uniform
 
         void push_layer(ILayer *layer);
 
-        virtual bool OnUpdate(int64_t) = 0;
+        virtual bool OnUpdate(const int64_t) = 0;
 
     private:
 

@@ -16,7 +16,7 @@ namespace Uniform
     {
     public:
 
-        VideoMode(int mode_width, int mode_height);
+        VideoMode(const int mode_width, const int mode_height);
 
         int width, height;
 
@@ -37,7 +37,7 @@ namespace Uniform
             Floating = 1 << 2
         };
 
-        Window(std::string title, VideoMode mode, unsigned style);
+        Window(const std::string title, const VideoMode mode, const unsigned style);
         virtual ~Window();
 
         Size2i get_size();
@@ -53,30 +53,32 @@ namespace Uniform
 
     private:
 
+        Handle *_window;
+
         std::string _title;
         VideoMode _mode;
         bool _vsync;
 
     protected:
 
-        Handle *_window;
+        void swap_buffers();
 
         bool poll_events();
 
         virtual void OnKeyboardPress(
-            Keyboard::Code,
-            Keyboard::Action
+            const Keyboard::Code,
+            const Keyboard::Action
         ) { }
 
         virtual void OnMousePress(
-            Mouse::Code,
-            Mouse::Action
+            const Mouse::Code,
+            const Mouse::Action
         ) { }
 
-        virtual void OnMouseMove(Point2i) { }
+        virtual void OnMouseMove(const Point2i) { }
 
-        virtual void OnWindowMove(Point2i) { }
-        virtual void OnWindowResize(Size2i) { }
+        virtual void OnWindowMove(const Point2i) { }
+        virtual void OnWindowResize(const Size2i) { }
 
     };
 }

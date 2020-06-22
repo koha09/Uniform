@@ -104,4 +104,9 @@ namespace Uniform
     std::ostream &operator<<(std::ostream &stream, Vector3<_type> &right) {
         return stream << "{ " << right.x << ", " << right.y << ", " << right.z << " }";
     }
+
+    template <class _type>
+    std::ostream &operator<<(std::ostream &stream, const Vector3<_type> &right) {
+        return stream << "{ " << right.x << ", " << right.y << ", " << right.z << " }";
+    }
 }

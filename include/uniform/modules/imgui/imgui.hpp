@@ -20,11 +20,11 @@ namespace Uniform
             ImGuiLayer() = default;
             virtual ~ImGuiLayer() = default;
 
-            void OnAttach(Uniform::IApplication *application);
-            void OnDetach();
+            virtual void OnAttach(Uniform::IApplication *application) override;
+            virtual void OnDetach() override;
 
-            void OnStartFrame(int64_t);
-            void OnEndFrame(int64_t);
+            virtual void OnStartFrame(int64_t) override;
+            virtual void OnEndFrame(int64_t) override;
 
         };
 

@@ -19,7 +19,7 @@ public:
         Window::Style::Resizable
     ) { }
 
-    bool OnUpdate(const int64_t elapsed_time) override {
+    virtual bool OnUpdate(const int64_t elapsed_time) override {
         return poll_events();
     }
 
@@ -43,24 +43,24 @@ public:
 
     Sandbox() : IApplication("Uni-form", VideoMode(1200, 800),
         Window::Style::Resizable
-    ) { }
+    ) override { }
 
-    void OnKeyboardPress(
+    virtual void OnKeyboardPress(
         const Keyboard::Code code,
         const Keyboard::Action action
-    ) { }
+    ) override { }
 
-    void OnMousePress(
+    virtual void OnMousePress(
         const Mouse::Code code,
         const Mouse::Action action
-    ) { }
+    ) override { }
 
-    void OnMouseMove(const Point2i position) { }
+    virtual void OnMouseMove(const Point2i position) override { }
 
-    void OnWindowMove(const Point2i position) { }
-    void OnWindowResize(const Size2i size) { }
+    virtual void OnWindowMove(const Point2i position) override { }
+    virtual void OnWindowResize(const Size2i size) override { }
 
-    bool OnUpdate(const int64_t elapsed_time) override {
+    virtual bool OnUpdate(const int64_t elapsed_time) override {
         return poll_events();
     }
 
@@ -107,7 +107,7 @@ public:
         push_layer(new Layer2);
     }
 
-    bool OnUpdate(const int64_t elapsed_time) override {
+    virtual bool OnUpdate(const int64_t elapsed_time) override {
         return poll_events();
     }
 

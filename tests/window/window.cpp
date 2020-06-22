@@ -10,7 +10,7 @@ public:
         Window::Style::Resizable
     ) { }
 
-    bool OnUpdate(const int64_t elapsed_time) override {
+    virtual bool OnUpdate(const int64_t elapsed_time) override {
         return poll_events();
     }
 

@@ -18,7 +18,7 @@ public:
 class Layer2 : public ILayer {
 public:
 
-    bool OnUpdate(const int64_t elapsed_time) override {
+    virtual bool OnUpdate(const int64_t elapsed_time) override {
         #if defined(_DEBUG_)
          LOG_INFORMATION() << "Message by Layer2!\n";
         #endif
@@ -38,7 +38,7 @@ public:
         push_layer(new Layer2);
     }
 
-    bool OnUpdate(const int64_t elapsed_time) override {
+    virtual bool OnUpdate(const int64_t elapsed_time) override {
         return poll_events();
     }
 

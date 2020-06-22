@@ -4,9 +4,9 @@
 using namespace std::chrono;
 
 Uniform::IApplication::IApplication(
-    std::string title,
-    VideoMode mode,
-    size_t style
+    const std::string title,
+    const VideoMode mode,
+    const size_t style
 ) : Window(title, mode, style) {
     _running = true;
 }
@@ -14,8 +14,8 @@ Uniform::IApplication::IApplication(
 void Uniform::ILayer::OnAttach(IApplication *application) { }
 void Uniform::ILayer::OnDetach() { }
 
-void Uniform::ILayer::OnStartFrame(int64_t) { }
-void Uniform::ILayer::OnEndFrame(int64_t) { }
+void Uniform::ILayer::OnStartFrame(const int64_t) { }
+void Uniform::ILayer::OnEndFrame(const int64_t) { }
 
 void Uniform::IApplication::push_layer(ILayer *layer) {
     _layers.push_back(layer);
