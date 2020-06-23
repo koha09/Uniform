@@ -1,4 +1,4 @@
-#include <uniform/core/renderer/renderer.hpp>
+#include <uniform/scene/renderer.hpp>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>

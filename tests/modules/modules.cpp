@@ -1,7 +1,7 @@
 #include <uniform.hpp>
 
 #include <uniform/modules/imgui/imgui.hpp>
-#include <uniform/core/renderer/renderer.hpp>
+#include <uniform/scene/renderer.hpp>
 
 using namespace Uniform;
 
