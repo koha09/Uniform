@@ -40,13 +40,13 @@ namespace Uniform
         Window(const std::string title, const VideoMode mode, const unsigned style);
         virtual ~Window();
 
-        Size2i get_size();
+        Size2i get_size() const;
         void set_size(Size2i size);
 
-        Point2i get_position();
+        Point2i get_position() const;
         void set_position(Point2i point);
 
-        bool is_vsync();
+        bool is_vsync() const;
         void set_vsync(bool enabled);
 
         void *get_handle();
@@ -56,14 +56,16 @@ namespace Uniform
         Handle *_window;
 
         std::string _title;
-        VideoMode _mode;
         bool _vsync;
+
+        mutable VideoMode _mode;
 
     protected:
 
         void swap_buffers();
-
         bool poll_events();
+
+        Keyboard::Action keyboard_pressed(Keyboard::Code code);
 
         virtual void OnKeyboardPress(
             const Keyboard::Code,

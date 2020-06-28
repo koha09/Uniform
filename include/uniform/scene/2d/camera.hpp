@@ -1,22 +1,22 @@
 #pragma once
 
-#include <uniform/platform/platform.hpp>
-
-#include <uniform/core/math/vector2.hpp>
+#include <uniform/scene/2d/object.hpp>
 
 namespace Uniform
 {
-    class UNIFORM_API Camera2D
+    class UNIFORM_API Camera2D : Object2D
     {
     public:
 
-        Camera2D(const Uniform::Vector2d position, const float rotate);
+        Camera2D(const Vector2d position, const double angle);
         virtual ~Camera2D() = default;
 
-    private:
+        double get_zoom() const;
+        void set_zoom(const double angle);
 
-        Uniform::Vector2d _position;
-        float _rotate;
+    protected:
+
+        double _zoom;
 
     };
 }

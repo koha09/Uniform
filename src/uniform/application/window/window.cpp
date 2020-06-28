@@ -61,7 +61,7 @@ Uniform::Window::~Window() {
     delete _window;
 }
 
-Uniform::Size2i Uniform::Window::get_size() {
+Uniform::Size2i Uniform::Window::get_size() const {
     glfwGetWindowSize(_window->instance, (int*)&_mode.width, (int*)&_mode.height);
     return Size2i(_mode.width, _mode.height);
 }
@@ -70,7 +70,7 @@ void Uniform::Window::set_size(Size2i size) {
     glfwSetWindowSize(_window->instance, size.x, size.y);
 }
 
-Uniform::Point2i Uniform::Window::get_position() {
+Uniform::Point2i Uniform::Window::get_position() const {
     Point2i point;
     glfwGetWindowPos(_window->instance, (int*)&point.x, (int*)&point.y);
     return point;
@@ -80,7 +80,7 @@ void Uniform::Window::set_position(Point2i point) {
     glfwSetWindowPos(_window->instance, point.x, point.y);
 }
 
-bool Uniform::Window::is_vsync() {
+bool Uniform::Window::is_vsync() const {
     return _vsync;
 }
 
@@ -99,4 +99,8 @@ void Uniform::Window::swap_buffers() {
 bool Uniform::Window::poll_events() {
     glfwPollEvents();
 	return !glfwWindowShouldClose(_window->instance);
+}
+
+Uniform::Keyboard::Action Uniform::Window::keyboard_pressed(Keyboard::Code code) {
+    return (Uniform::Keyboard::Action)glfwGetKey(_window->instance, (int)code);
 }

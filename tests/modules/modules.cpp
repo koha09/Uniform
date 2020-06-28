@@ -29,7 +29,7 @@ public:
     }
 
     virtual bool OnUpdate(const int64_t elapsed_time) override {
-        Uniform::Renderer::SetClearColor(0.20f, 0.25f, 0.30f);
+        Uniform::Renderer::SetClearColor(0.20f, 0.25f, 0.30f, 1.f);
         Uniform::Renderer::Clear(UF_COLOR_BUFFER_BIT);
         Uniform::Modules::ImGuiRenderDrawData();
         swap_buffers();
