@@ -47,7 +47,9 @@ public:
         if (position.y > 0.8) { position.y = 0.8, velocity.y = -(velocity.y / 2.f); }
         if (position.y < -0.8) { position.y = -0.8, velocity.y = -(velocity.y / 2.f); }
 
-        LOG_INFORMATION() << position << '\n';
+        #if defined(_DEBUG_)
+         LOG_INFORMATION() << position << '\n';
+        #endif
 
         Renderer::SetClearColor(0.f, 0.f, 0.f, 1.f);
         Renderer::Clear(UF_COLOR_BUFFER_BIT);
