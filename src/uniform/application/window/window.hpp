@@ -25,7 +25,7 @@ namespace Uniform
     {
     private:
 
-        struct Handle;
+        struct window_wrapper;
 
     public:
 
@@ -52,12 +52,12 @@ namespace Uniform
 
     private:
 
-        Handle *_window;
+        window_wrapper *_window;
 
         std::string _title;
         bool _vsync;
 
-        mutable VideoMode _mode;
+        VideoMode _mode;
 
     protected:
 

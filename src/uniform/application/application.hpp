@@ -1,7 +1,6 @@
 #include <uniform/application/window/window.hpp>
 
 #include <chrono>
-#include <list>
 
 using namespace std::chrono;
 
@@ -31,10 +30,14 @@ namespace Uniform
 
     class UNIFORM_API IApplication : public Window
     {
+    private:
+
+        struct layers_wrapper;
+
     public:
 
         IApplication(const std::string &title, const VideoMode &mode, uint32_t style = 0);
-        virtual ~IApplication() = default;
+        virtual ~IApplication();
 
         void run();
 
@@ -49,7 +52,7 @@ namespace Uniform
     private:
 
         bool _running;
-        std::list<ILayer*> _layers;
+        layers_wrapper *_layers;
 
     };
 
