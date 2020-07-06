@@ -1,9 +1,9 @@
 [submodule "vendor/glfw"]
-	path = vendor/glfw
-	url = https://github.com/glfw/glfw
+    path = vendor/glfw
+    url = https://github.com/glfw/glfw
 [submodule "vendor/termcolor"]
-	path = vendor/termcolor
-	url = https://github.com/ikalnytskyi/termcolor
+    path = vendor/termcolor
+    url = https://github.com/ikalnytskyi/termcolor
 [submodule "vendor/imgui"]
-	path = vendor/imgui
-	url = https://github.com/ocornut/imgui
+    path = vendor/imgui
+    url = https://github.com/ocornut/imgui

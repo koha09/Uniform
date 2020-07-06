@@ -37,10 +37,10 @@ void ImGuiLayer::OnDetach() {
     ImGui::DestroyContext();
 }
 
-void ImGuiLayer::OnStartFrame(int64_t) {
+void ImGuiLayer::OnStartFrame(const nanoseconds) {
     ImGuiNewFrame();
 }
 
-void ImGuiLayer::OnEndFrame(int64_t) {
+void ImGuiLayer::OnEndFrame(const nanoseconds) {
     ImGuiEndFrame();
 }

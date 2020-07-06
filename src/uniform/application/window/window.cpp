@@ -13,9 +13,9 @@ struct Uniform::Window::Handle {
 };
 
 Uniform::Window::Window(
-    const std::string title,
-    const VideoMode mode,
-    const unsigned style
+    const std::string &title,
+    const VideoMode &mode,
+    uint32_t style
 ) : _title(title), _mode(mode), _window(new Handle) {
     if (!glfwInit()) {
         exit(EXIT_FAILURE);
@@ -61,7 +61,7 @@ Uniform::Window::~Window() {
     delete _window;
 }
 
-Uniform::Size2i Uniform::Window::get_size() const {
+Size2i Uniform::Window::get_size() const {
     glfwGetWindowSize(_window->instance, (int*)&_mode.width, (int*)&_mode.height);
     return Size2i(_mode.width, _mode.height);
 }
@@ -70,7 +70,7 @@ void Uniform::Window::set_size(Size2i size) {
     glfwSetWindowSize(_window->instance, size.x, size.y);
 }
 
-Uniform::Point2i Uniform::Window::get_position() const {
+Point2i Uniform::Window::get_position() const {
     Point2i point;
     glfwGetWindowPos(_window->instance, (int*)&point.x, (int*)&point.y);
     return point;
@@ -101,6 +101,6 @@ bool Uniform::Window::poll_events() {
 	return !glfwWindowShouldClose(_window->instance);
 }
 
-Uniform::Keyboard::Action Uniform::Window::keyboard_pressed(Keyboard::Code code) {
-    return (Uniform::Keyboard::Action)glfwGetKey(_window->instance, (int)code);
+Keyboard::Action Uniform::Window::keyboard_pressed(Keyboard::Code code) {
+    return (Keyboard::Action)glfwGetKey(_window->instance, (int)code);
 }

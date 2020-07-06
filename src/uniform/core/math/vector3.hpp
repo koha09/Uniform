@@ -3,25 +3,24 @@
 
 #include <ostream>
 
-#ifndef VECTOR4_HPP
-#define VECTOR4_HPP
+#ifndef VECTOR3_HPP
+#define VECTOR3_HPP
 
 template <class _type>
-struct Vector<_type, 4>
+struct Vector<_type, 3>
 {
 
-    _type x, y, z, w;
+    _type x, y, z;
 
-    Vector() : x(_type()), y(_type()), z(_type()), w(_type()) { }
-    Vector(const _type v[4]) : x(v[0]), y(v[1]), z(v[2]), w(v[3]) { }
-    Vector(const _type x, const _type y, const _type z, const _type w) : x(x), y(y), z(z), w(w) { }
+    Vector() : x(_type()), y(_type()), z(_type()) { }
+    Vector(const _type v[3]) : x(v[0]), y(v[1]), z(v[2]) { }
+    Vector(const _type x, const _type y, const _type z) : x(x), y(y), z(z) { }
 
     _type operator[](uint32_t i) const {
         constexpr _type Vector::*accessors[] = {
             &Vector::x,
             &Vector::y,
-            &Vector::z,
-            &Vector::w
+            &Vector::z
         }; return this->*accessors[i];
     }
 
@@ -29,97 +28,96 @@ struct Vector<_type, 4>
         constexpr _type Vector::*accessors[] = {
             &Vector::x,
             &Vector::y,
-            &Vector::z,
-            &Vector::w
+            &Vector::z
         }; return this->*accessors[i];
     }
 
     Vector operator+(const _type &r) const noexcept {
-        return Vector(x + r, y + r, z + r, w + r);
+        return Vector(x + r, y + r, z + r);
     }
 
     Vector operator+(const Vector &r) const noexcept {
-        return Vector(x + r.x, y + r.y, z + r.z, w + r.w);
+        return Vector(x + r.x, y + r.y, z + r.z);
     }
 
     Vector operator-(const _type &r) const noexcept {
-        return Vector(x - r, y - r, z - r, w - r);
+        return Vector(x - r, y - r, z - r);
     }
 
     Vector operator-(const Vector &r) const noexcept {
-        return Vector(x - r.x, y - r.y, z - r.z, w - r.w);
+        return Vector(x - r.x, y - r.y, z - r.z);
     }
 
-    Vector operator*(const _type &r) const noexcept{
-        return Vector(x * r, y * r, z * r, w * r);
+    Vector operator*(const _type &r) const noexcept {
+        return Vector(x * r, y * r, z * r);
     }
 
     Vector operator*(const Vector &r) const noexcept {
-        return Vector(x * r.x, y * r.y, z * r.z, w * r.w);
+        return Vector(x * r.x, y * r.y, z * r.z);
     }
 
     Vector operator/(const _type &r) const {
-        return Vector(x / r, y / r, z / r, w / r);
+        return Vector(x / r, y / r, z / r);
     }
 
     Vector operator/(const Vector &r) const {
-        return Vector3(x / r.x, y / r.y, z / r.z, w / r.w);
+        return Vector(x / r.x, y / r.y, z / r.z);
     }
 
     Vector &operator+=(const _type &r) noexcept {
-        x += r, y += r, z += r, w += r;
+        x += r, y += r, z += r;
         return *this;
     }
 
     Vector &operator+=(const Vector &r) noexcept {
-        x += r.x, y += r.y, z += r.z, w += r.w;
+        x += r.x, y += r.y, z += r.z;
         return *this;
     }
 
 	Vector &operator-=(const _type &r) noexcept {
-        x -= r, y -= r, z -= r, w -= r;
+        x -= r, y -= r, z -= r;
         return *this;
     }
 
     Vector &operator-=(const Vector &r) noexcept {
-        x -= r.x, y -= r.y, z -= r.z, w -= r.w;
+        x -= r.x, y -= r.y, z -= r.z;
         return *this;
     }
 
     Vector &operator*=(const _type &r) noexcept {
-        x *= r, y *= r, z *= r, w *= r;
+        x *= r, y *= r, z *= r;
         return *this;
     }
 
     Vector &operator*=(const Vector &r) noexcept {
-        x *= r.x, y *= r.y, z *= r.z, w *= r.w;
+        x *= r.x, y *= r.y, z *= r.z;
         return *this;
     }
 
     Vector &operator/=(const _type &r) {
-        x /= r, y /= r, z /= r, w /= r;
+        x /= r, y /= r, z /= r;
         return *this;
     }
 
     Vector &operator/=(const Vector &r) {
-        x /= r.x, y /= r.y, z /= r.z, w /= r.w;
+        x /= r.x, y /= r.y, z /= r.z;
         return *this;
     }
 
     constexpr uint32_t size() const noexcept {
-        return 4;
+        return 3;
     }
 
 };
 
-typedef Vector<unsigned, 4> Vector4u;
-typedef Vector<int,      4> Vector4i;
-typedef Vector<float,    4> Vector4f;
-typedef Vector<double,   4> Vector4d;
+typedef Vector<unsigned, 3> Vector3u;
+typedef Vector<int,      3> Vector3i;
+typedef Vector<float,    3> Vector3f;
+typedef Vector<double,   3> Vector3d;
 
 template <class _type>
-std::ostream &operator<<(std::ostream &l, const Vector<_type, 4> &r) {
-    return l << "{ " << r.x << ", " << r.y << ", " << r.z << ", " << r.w << " }";
+std::ostream &operator<<(std::ostream &s, const Vector<_type, 3> &r) {
+    return s << "{ " << r.x << ", " << r.y << ", " << r.z << " }";
 }
 
 #endif

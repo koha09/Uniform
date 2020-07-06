@@ -1,1 +1,0 @@
-#include <uniform/core/math/vector3.hpp>

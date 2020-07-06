@@ -1,12 +1,9 @@
 #include <uniform/application/application.hpp>
 
-#include <chrono>
-using namespace std::chrono;
-
 Uniform::IApplication::IApplication(
-    const std::string title,
-    const VideoMode mode,
-    const size_t style
+    const std::string &title,
+    const VideoMode &mode,
+    uint32_t style
 ) : Window(title, mode, style) {
     _running = true;
 }
@@ -14,8 +11,8 @@ Uniform::IApplication::IApplication(
 void Uniform::ILayer::OnAttach(IApplication *application) { }
 void Uniform::ILayer::OnDetach() { }
 
-void Uniform::ILayer::OnStartFrame(const int64_t) { }
-void Uniform::ILayer::OnEndFrame(const int64_t) { }
+void Uniform::ILayer::OnStartFrame(const nanoseconds) { }
+void Uniform::ILayer::OnEndFrame(const nanoseconds) { }
 
 void Uniform::IApplication::push_layer(ILayer *layer) {
     _layers.push_back(layer);
@@ -23,10 +20,11 @@ void Uniform::IApplication::push_layer(ILayer *layer) {
 }
 
 void Uniform::IApplication::run() {
-    int64_t elapsed_time = 1;
-    system_clock::time_point first_time;
+    OnCreate();
+    nanoseconds elapsed_time(0);
+    system_clock::time_point started_time;
     while (_running) {
-        first_time = system_clock::now();
+        started_time = system_clock::now();
 
         for (auto it = _layers.begin(); it != _layers.end(); ++it) {
             (*it)->OnStartFrame(elapsed_time);
@@ -42,6 +40,10 @@ void Uniform::IApplication::run() {
             break;
         }
 
-        elapsed_time = (system_clock::now() - first_time).count();
+        elapsed_time = (system_clock::now() - started_time);
     }
+    OnClose();
 }
+
+void Uniform::IApplication::OnCreate() { }
+void Uniform::IApplication::OnClose() { }
