@@ -6,12 +6,6 @@
 
 class UNIFORM_API Texture
 {
-private:
-
-    int _bpp = 0;
-	uint32_t _id = 0;
-	Size2i _size;
-
 public:
 
 	enum class Buffer : size_t {
@@ -49,13 +43,19 @@ public:
 		texture_32
 	};
 
-	Texture(const std::string &file);
+	Texture(const char *file);
 	~Texture();
 
 	Size2i get_size();
 
 	void bind(Buffer buffer) const;
 	void unbind() const;
+
+private:
+
+    int _bpp = 0;
+	uint32_t _id = 0;
+	Size2i _size;
 
 };
 

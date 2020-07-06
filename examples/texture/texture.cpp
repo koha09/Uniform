@@ -70,7 +70,7 @@ public:
             velocity.x -= 0.000005f;
         }
 
-        position += velocity * duration_cast<milliseconds>(elapsed_time).count();
+        position += velocity * (float)duration_cast<milliseconds>(elapsed_time).count();
 
         Renderer::SetClearColor(0.f, 0.f, 0.f, 1.f);
         Renderer::Clear(UF_COLOR_BUFFER_BIT);

@@ -3,9 +3,9 @@
 #include <glad/glad.h>
 #include <stb_image.h>
 
-Texture::Texture(const std::string& file) {
+Texture::Texture(const char *file) {
 	stbi_set_flip_vertically_on_load(true);
-	uint8_t* image = stbi_load(file.c_str(), &_size.x, &_size.y, &_bpp, 4);
+	uint8_t* image = stbi_load(file, &_size.x, &_size.y, &_bpp, 4);
 	if (image) {
         glGenTextures(1, &_id);
 		glBindTexture(GL_TEXTURE_2D, _id);
