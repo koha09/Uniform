@@ -29,6 +29,7 @@ add_library(${PROJECT_NAME} STATIC ${UNIFORM_SRC_FILES})
 
 # Including of headers
 target_include_directories(${PROJECT_NAME} PUBLIC "${UNIFORM_SRC_DIR}/")
+target_compile_definitions(${PROJECT_NAME} PUBLIC "UNIFORM_LIBRARY")
 
 # Setting of special macro definitions
 target_compile_definitions(${PROJECT_NAME} INTERFACE "UNIFORM_LIBRARY")
