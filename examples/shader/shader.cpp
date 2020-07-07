@@ -9,6 +9,7 @@
 #include <uniform/modules/imgui/imgui.hpp>
 
 #include <uniform/scene/shader.hpp>
+#include <uniform/scene/vertex_buffer.hpp>
 
 #include <uniform/core/debug/logger.hpp>
 
@@ -22,7 +23,7 @@ public:
 
     virtual bool OnUpdate(const nanoseconds elapsed_time) override {
         ImGui::Begin("Message");
-        ImGui::ColorEdit3("Color", triangle_color);
+        ImGui::ColorEdit3("color", triangle_color);
         return true;
     }
 
@@ -33,6 +34,7 @@ class Sandbox : public IApplication
 public:
 
     Shader color_shader;
+    VertexBuffer buffer;
 
     Sandbox() : IApplication("Uniform", VideoMode(1200, 800)), color_shader(
         "#version 330 core\n"
@@ -49,7 +51,7 @@ public:
         "{\n"
         "   fragment_color = color;\n"
         "}"
-    ) {
+    ), buffer(0, VertexBuffer::Type::Float, 4 * 2 * sizeof(float)) {
         push_layer(new ImGuiLayer);
     }
 
@@ -58,21 +60,14 @@ public:
     virtual void OnCreate() override {
         LOGGER_CASE_INFORMATION(LOGGER_GET_TIME() << " : window created\n");
 
-        Matrix<float, 4, 2> vertices {
+        buffer.set(Matrix<float, 4, 2> {
             { -0.5f, -0.5f },
             { -0.5f,  0.5f },
             {  0.5f,  0.5f },
             {  0.5f, -0.5f },
-        };
+        });
 
-        uint32_t v_buffer;
-        glGenBuffers(1, &v_buffer);
-        glBindBuffer(GL_ARRAY_BUFFER, v_buffer);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 8, vertices.data(), GL_STATIC_DRAW);
-
-        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
-
-		color_shader.bind();
+        color_shader.bind();
     }
 
     virtual bool OnUpdate(const nanoseconds elapsed_time) override {
@@ -80,10 +75,9 @@ public:
         Renderer::Clear(UF_COLOR_BUFFER_BIT);
 
         color_shader.set_float4("color", triangle_color);
-
-        glEnableVertexAttribArray(0);
-        glDrawArrays(GL_QUADS, 0, 4);
-        glDisableVertexAttribArray(0);
+        buffer.bind();
+        Renderer::DrawArray(Renderer::Quads, 0, 4);
+        buffer.unbind();
 
         Modules::ImGuiRenderDrawData();
         swap_buffers();

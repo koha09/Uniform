@@ -14,3 +14,7 @@ void Uniform::Renderer::SetClearColor(float r, float g, float b, float a) {
 void Uniform::Renderer::Clear(uint32_t mask) {
     glClear(mask);
 }
+
+void UNIFORM_API Uniform::Renderer::DrawArray(Primitives type, uint32_t first, uint32_t count) {
+    glDrawArrays(type, first, count);
+}

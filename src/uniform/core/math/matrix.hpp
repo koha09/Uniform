@@ -1,5 +1,7 @@
 #include <uniform/core/math/matrix_fwd.hpp>
 
+#include <uniform/core/math/vector_fwd.hpp>
+
 #include <initializer_list>
 #include <ostream>
 
